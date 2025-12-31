@@ -1,147 +1,126 @@
-/* BASE STYLES & CUSTOM THEME */
+/* General Layout */
 html {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(247, 219, 219); /* Your custom pink */
-    color: #3f165a;                      /* Your custom purple */
-    font-family: cursive;
+  margin: 0;
+  padding: 0;
+  background-color: #fce4ec; /* Your pink background */
+  font-family: 'Inter', sans-serif;
+  color: #333;
 }
 
-p, small, .label, .input, .button, .title {
-    font-family: cursive;
-}
-
-p { font-size: 1.6rem; }
-small { font-size: 1.2rem; }
-
-/* LAYOUT */
 .container {
-    margin: 0 auto;
-    max-width: 1000px;
-    padding: 40px;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 95%; /* Ensures a small margin on mobile */
+  padding: 40px 0;
 }
 
 .title {
-    font-size: 4.4rem;
-    text-align: center;
-    margin-bottom: 3rem;
+  font-size: 4.4rem;
+  text-align: center;
+  color: #3f165a;
+  margin-bottom: 4rem;
 }
 
-/* SEARCH FORM - MOBILE FIRST */
+/* Form Styles */
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column; /* Stack vertically on mobile */
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 600px) {
+  .form {
+    flex-direction: row; /* Horizontal on desktop */
+    justify-content: center;
+  }
 }
 
 .label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-    text-transform: uppercase;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #3f165a;
+  font-weight: bold;
 }
 
 .input {
-    font-size: 1.6rem;
-    padding: 0.5rem 2rem;
-    line-height: 2.8rem;
-    border-radius: 20px;
-    border: 1px solid #fae1e1;
-    margin-bottom: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
 }
 
 .button {
-    background-color: rgba(0,0,0,0.75);
-    color: white;
-    padding: 1rem 2rem;
-    border: 1px solid rgba(0,0,0,0.75);
-    border-radius: 20px;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: background-color 250ms;
+  background-color: #333;
+  color: white;
+  padding: 1rem 2.8rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .button:hover {
-    background-color: rgba(0,0,0,0.85);
+  background-color: #555;
 }
 
-/* FORM DESKTOP (Width > 786px) */
-@media (min-width: 786px) {
-    .form {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-gap: 1rem;
-        align-items: center;
-    }
-    .input {
-        margin-bottom: 0;
-    }
-}
-
-/* MOVIE CARD LIST - RESPONSIVE GRID */
+/* Card List Grid */
 .card-list {
-    margin-top: 4rem;
-    display: grid;
-    /* This makes the cards form a grid on desktop but stack on mobile */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 3rem;
+  justify-items: center; /* Centers the cards horizontally */
 }
 
-/* INDIVIDUAL CARD */
+/* Movie Card Styles */
 .card {
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
-    background-color: white;
-    display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
-    gap: 1.5rem;
-}
-
-.card--title {
-    margin-bottom: 0.5rem;
-    font-size: 2.8rem; /* Slightly smaller to fit grid better */
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%; /* Allows grid to control width */
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card--image {
-    margin: 0 auto;
-    display: block;
-    max-width: 100%;
-    border-radius: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
-/* CARD DESKTOP (Width > 786px) */
-@media (min-width: 786px) {
-    .card {
-        display: grid;
-        grid-template-columns: 185px 1fr; /* Image width fixed, text takes rest */
-        gap: 2rem;
-        align-items: start;
-    }
-    .card--image {
-        margin: 0;
-    }
-}
-/* HOVER EFFECT */
-.card {
-    transition: transform 300ms ease, box-shadow 300ms ease;
-    cursor: pointer;
+.card--title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.card:hover {
-    transform: translateY(-5px); /* Moves the card up by 5px */
-    box-shadow: 0px 10px 20px rgba(63, 22, 90, 0.2); /* Deeper shadow using your purple theme color */
+.card--content {
+  flex-grow: 1;
 }
-.error, .loading, .instructions {
-    font-size: 2rem;
-    text-align: center;
-    margin-top: 2rem;
-    color: #3f165a;
+
+.card--desc {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+/* Status Messages */
+.error, .loading {
+  font-size: 2rem;
+  text-align: center;
+  color: #3f165a;
+  width: 100%;
 }
